@@ -7,8 +7,8 @@
 
 import UIKit
 
-/// Custom TabBar
-class TabBarController: UITabBarController {
+/// Main Tab Bar
+final class MainTabBarController: UITabBarController {
     
     // MARK: - Life Cycle
     override func viewDidLoad() {

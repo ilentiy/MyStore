@@ -9,7 +9,7 @@ import UIKit
 
 /// Корзина товаров
 final class BasketViewController: UIViewController {
-
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,9 @@ final class BasketViewController: UIViewController {
 
 /// extension
 extension BasketViewController {
-    func setupUI() {
+    
+    // MARK: - Private Methods
+    private func setupUI() {
         view.backgroundColor = .systemBackground
     }
 }

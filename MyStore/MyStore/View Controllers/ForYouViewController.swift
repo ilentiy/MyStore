@@ -9,7 +9,7 @@ import UIKit
 
 /// Экран Для вас
 final class ForYouViewController: UIViewController {
-
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,9 @@ final class ForYouViewController: UIViewController {
 
 /// extension
 extension ForYouViewController {
-    func setupUI() {
+    
+    // MARK: - Private Methods
+    private func setupUI() {
         view.backgroundColor = .systemBackground
     }
 }

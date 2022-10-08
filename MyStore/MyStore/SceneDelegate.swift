@@ -15,8 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        let tabBarController = TabBarController()
-        tabBarController.view.backgroundColor = .red
+        let tabBarController = MainTabBarController()
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }

@@ -9,7 +9,7 @@ import UIKit
 
 /// Карточка продукта
 final class ProductViewController: UITabBarController {
-
+    
     // MARK: - Visual Components
     lazy var nameProductLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 100, width: view.frame.width, height: 50))
@@ -37,9 +37,12 @@ final class ProductViewController: UITabBarController {
 
 /// extension
 extension ProductViewController {
-    func setupUI() {
+    
+    // MARK: - Private Methods
+    private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(nameProductLabel)
         view.addSubview(productImageView)
+        tabBar.isHidden = true
     }
 }
