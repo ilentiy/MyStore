@@ -163,7 +163,7 @@ final class ProductViewController: UIViewController {
     }
 }
 
-/// extension
+/// extension добавляет методы 
 extension ProductViewController {
     
     // MARK: - Private Methods

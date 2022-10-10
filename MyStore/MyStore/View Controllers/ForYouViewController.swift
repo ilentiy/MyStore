@@ -17,7 +17,7 @@ final class ForYouViewController: UIViewController {
     }
 }
 
-/// extension
+/// extension добавляет методы
 extension ForYouViewController {
     
     // MARK: - Private Methods
