@@ -20,7 +20,7 @@ final class MainTabBarController: UITabBarController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.backgroundColor = UIColor(named: "TabBarColor")
+        tabBar.backgroundColor = UIColor(named: Colors.element)
         setupViewControllers()
     }
     
