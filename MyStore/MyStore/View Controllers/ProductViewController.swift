@@ -46,7 +46,14 @@ final class ProductViewController: UIViewController {
     private lazy var whiteButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 535, width: 35, height: 35))
         button.center.x = view.center.x - 23.5
-        button.backgroundColor = .lightGray
+        
+        var config = UIButton.Configuration.borderless()
+        config.cornerStyle = .capsule
+        config.background.strokeColor = .systemBackground
+        config.background.strokeWidth = 4
+        config.background.backgroundColor = .lightGray
+        button.configuration = config
+        
         button.layer.cornerRadius = 17.5
         button.layer.borderColor = UIColor.clear.cgColor
         button.layer.borderWidth = 2
@@ -57,7 +64,14 @@ final class ProductViewController: UIViewController {
     private lazy var gradientButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 535, width: 35, height: 35))
         button.center.x = view.center.x + 23.5
-        button.backgroundColor = .systemGray5
+        
+        var config = UIButton.Configuration.borderless()
+        config.cornerStyle = .capsule
+        config.background.strokeColor = .systemBackground
+        config.background.strokeWidth = 4
+        config.background.backgroundColor = .systemGray5
+        button.configuration = config
+        
         button.layer.cornerRadius = 17.5
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.tintColor.cgColor
