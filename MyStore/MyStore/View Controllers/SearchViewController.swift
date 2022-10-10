@@ -192,7 +192,7 @@ final class SearchViewController: UIViewController {
     }
 }
 
-/// extension
+/// extension добавляет методы 
 extension SearchViewController {
     
     // MARK: - Private Methods
@@ -273,4 +273,5 @@ extension SearchViewController {
     }
 }
 
+/// UIScrollViewDelegate
 extension SearchViewController: UIScrollViewDelegate {}

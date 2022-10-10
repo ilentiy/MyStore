@@ -19,6 +19,9 @@ enum SystemImageNames {
     static let box = "shippingbox"
     static let heart = "heart"
     static let share = "square.and.arrow.up"
+    static let laptop = "laptopcomputer.and.iphone"
+    static let person = "person.crop.circle"
+    static let bag = "bag"
 }
 
 /// Текст кнопок
