@@ -9,22 +9,36 @@ import UIKit
 
 /// Экран поиска
 final class SearchViewController: UIViewController {
-    // MARK: - Constants
+    
+    /// Константы
     enum Constants {
         static let placeholderText = "Поиск по продуктам и магазинам"
         static let recentlyText = "Недавно просмотренные"
-        static let clearButtonTitle = "Очистить"
         static let requestsText = "Варианты запросов"
-        static let blackCaseInfoText = "Чехол Incase Flat для MacBook Pro 16 дюймов"
-        static let blackCaseImageName = "caseBlack1"
-        static let brownCaseInfoText = "Кожанный чехол Incase Flat для MacBook Pro 16 дюймов, золотой"
-        static let brownCaseImageName = "caseBrown1"
-        static let watchInfoText = "Спортивный ремешок Black Unity"
-        static let watchImageName = "clock1"
         static let requestOneText = "AirPods"
         static let requestTwoText = "AppleCare"
         static let requestThreeText = "Beats"
         static let requestFourText = "Сравните модели iPhone"
+    }
+    /// Информация о продуктах
+    enum InfoProducts {
+        static let blackCase = "Чехол Incase Flat для MacBook Pro 16 дюймов"
+        static let brownCase = "Кожанный чехол Incase Flat для MacBook Pro 16 дюймов, золотой"
+        static let watchStrap = "Спортивный ремешок Black Unity"
+    }
+    
+    /// Цена продуктов
+    enum ProductPrice {
+        static let blackCase = "3 900.00 руб."
+        static let brownCase = "5 600.00 руб."
+        static let watchStrap = "4 000.00 руб."
+    }
+    
+    /// Имена изображений продуктов
+    enum ProductsImagesName {
+        static let blackCase = ["caseBlack1", "caseBlack2", "caseBlack3"]
+        static let brownCase = ["caseBrown1", "caseBrown2", "caseBrown3"]
+        static let watchStrap = ["watchStrap1", "watchStrap2"]
     }
     
     // MARK: - Visual Components
@@ -45,7 +59,7 @@ final class SearchViewController: UIViewController {
     
     private lazy var clearButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 290, y: 200, width: 100, height: 50))
-        button.setTitle(Constants.clearButtonTitle, for: .normal)
+        button.setTitle(TitleButtons.clear, for: .normal)
         button.setTitleColor(.tintColor, for: .normal)
         button.backgroundColor = .clear
         return button
@@ -59,45 +73,12 @@ final class SearchViewController: UIViewController {
         return label
     }()
     
-    private lazy var blackCaseView: UIView = {
-        let view =  createproductView(x: 10, y: 260)
-        view.tag = 0
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
-        let label = createProductLabel(text: Constants.blackCaseInfoText)
-        let imageView = createProductImage(named: Constants.blackCaseImageName)
-        view.addSubview(label)
-        view.addSubview(imageView)
-        return view
-    }()
-    
-    private lazy var brownCaseView: UIView = {
-        let view =  createproductView(x: 330, y: 260)
-        view.tag = 1
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
-        let label = createProductLabel(text: Constants.brownCaseInfoText)
-        let imageView = createProductImage(named: Constants.brownCaseImageName)
-        view.addSubview(label)
-        view.addSubview(imageView)
-        return view
-    }()
-    
-    private lazy var watchView: UIView = {
-        let view =  createproductView(x: 170, y: 260)
-        view.tag = 2
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
-        let label = createProductLabel(text: Constants.watchInfoText)
-        let imageView = createProductImage(named: Constants.watchImageName)
-        view.addSubview(label)
-        view.addSubview(imageView)
-        return view
-    }()
-    
     private lazy var requestOneView: UIView = {
         let view = UIView(frame: CGRect(x: 20, y: 500, width: view.frame.width - 40, height: 50))
         view.backgroundColor = .clear
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 15, width: 20, height: 20))
-        imageView.image = UIImage(systemName: "magnifyingglass")
+        imageView.image = UIImage(systemName: SystemImageNames.magnifyingGlass)
         imageView.tintColor = .placeholderText
         imageView.contentMode = .scaleAspectFit
         
@@ -108,7 +89,7 @@ final class SearchViewController: UIViewController {
         label.text = Constants.requestOneText
         
         let lineView = UIView(frame: CGRect(x: 0, y: view.frame.height - 2, width: view.frame.width, height: 1))
-        lineView.backgroundColor = UIColor(named: "ElementColor")
+        lineView.backgroundColor = UIColor(named: Colors.element)
         
         view.addSubview(imageView)
         view.addSubview(label)
@@ -121,7 +102,7 @@ final class SearchViewController: UIViewController {
         view.backgroundColor = .clear
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 15, width: 20, height: 20))
-        imageView.image = UIImage(systemName: "magnifyingglass")
+        imageView.image = UIImage(systemName: SystemImageNames.magnifyingGlass)
         imageView.tintColor = .placeholderText
         imageView.contentMode = .scaleAspectFit
         
@@ -132,7 +113,7 @@ final class SearchViewController: UIViewController {
         label.text = Constants.requestTwoText
         
         let lineView = UIView(frame: CGRect(x: 0, y: view.frame.height - 2, width: view.frame.width, height: 1))
-        lineView.backgroundColor = UIColor(named: "ElementColor")
+        lineView.backgroundColor = UIColor(named: Colors.element)
         
         view.addSubview(imageView)
         view.addSubview(label)
@@ -145,7 +126,7 @@ final class SearchViewController: UIViewController {
         view.backgroundColor = .clear
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 15, width: 20, height: 20))
-        imageView.image = UIImage(systemName: "magnifyingglass")
+        imageView.image = UIImage(systemName: SystemImageNames.magnifyingGlass)
         imageView.tintColor = .placeholderText
         imageView.contentMode = .scaleAspectFit
         
@@ -156,7 +137,7 @@ final class SearchViewController: UIViewController {
         label.text = Constants.requestThreeText
         
         let lineView = UIView(frame: CGRect(x: 0, y: view.frame.height - 2, width: view.frame.width, height: 1))
-        lineView.backgroundColor = UIColor(named: "ElementColor")
+        lineView.backgroundColor = UIColor(named: Colors.element)
         
         view.addSubview(imageView)
         view.addSubview(label)
@@ -169,7 +150,7 @@ final class SearchViewController: UIViewController {
         view.backgroundColor = .clear
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 15, width: 20, height: 20))
-        imageView.image = UIImage(systemName: "magnifyingglass")
+        imageView.image = UIImage(systemName: SystemImageNames.magnifyingGlass)
         imageView.tintColor = .placeholderText
         imageView.contentMode = .scaleAspectFit
         
@@ -180,13 +161,29 @@ final class SearchViewController: UIViewController {
         label.text = Constants.requestFourText
         
         let lineView = UIView(frame: CGRect(x: 0, y: view.frame.height - 2, width: view.frame.width, height: 1))
-        lineView.backgroundColor = UIColor(named: "ElementColor")
+        lineView.backgroundColor = UIColor(named: Colors.element)
         
         view.addSubview(imageView)
         view.addSubview(label)
         view.addSubview(lineView)
         return view
     }()
+    
+    private lazy var productScrollView = createProductScrollView(x: 0, y: 260)
+    
+    // MARK: - Private Property
+    
+    private let products = [Product(name: InfoProducts.blackCase,
+                                    price: ProductPrice.blackCase,
+                                    imagesName: ProductsImagesName.blackCase),
+                            Product(name: InfoProducts.watchStrap,
+                                    price: ProductPrice.watchStrap,
+                                    imagesName: ProductsImagesName.watchStrap),
+                            Product(name: InfoProducts.brownCase,
+                                    price: ProductPrice.brownCase,
+                                    imagesName: ProductsImagesName.brownCase)
+    
+    ]
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -195,7 +192,7 @@ final class SearchViewController: UIViewController {
     }
 }
 
-/// extension
+/// extension добавляет методы 
 extension SearchViewController {
     
     // MARK: - Private Methods
@@ -204,56 +201,77 @@ extension SearchViewController {
         view.addSubview(recentlyLabel)
         view.addSubview(clearButton)
         view.addSubview(requestsLabel)
-        view.addSubview(blackCaseView)
-        view.addSubview(brownCaseView)
-        view.addSubview(watchView)
         view.addSubview(requestOneView)
         view.addSubview(requestTwoView)
         view.addSubview(requestThreeView)
         view.addSubview(requestFourView)
+        view.addSubview(productScrollView)
         navigationItem.searchController = searchBar
     }
     
-    private func createproductView(x xCoordinate: Int, y yCoordinate: Int) -> UIView {
-        let view = UIView(frame: CGRect(x: xCoordinate, y: yCoordinate, width: 140, height: 180))
-        view.layer.cornerRadius = 20
-        view.backgroundColor = UIColor(named: "ElementColor")
-        return view
-    }
-    
-    private func createProductLabel(text: String) -> UILabel {
-        let label = UILabel(frame: CGRect(x: 10, y: 115, width: 120, height: 60))
-        label.textColor = .label
-        label.numberOfLines = 3
-        label.font = UIFont.boldSystemFont(ofSize: 13)
-        label.text = text
-        return label
-    }
-    
-    private func createProductImage(named imageName: String) -> UIImageView {
-        let imageView = UIImageView(frame: CGRect(x: 25, y: 20, width: 90, height: 90))
+    private func newImageViewWithImage(imageName: String, paramFrame: CGRect) -> UIImageView {
+        let imageView = UIImageView(frame: paramFrame)
         let image = UIImage(named: imageName)
-        imageView.image = image
         imageView.contentMode = .scaleAspectFit
+        imageView.image = image
         return imageView
     }
     
-    @objc private func tapAction(sender: UITapGestureRecognizer) {
-        let productViewController = ProductViewController()
-        switch sender.view?.tag {
-        case 0:
-            productViewController.nameProductLabel.text = Constants.blackCaseInfoText
-            productViewController.productImageView.image = UIImage(named: Constants.blackCaseImageName)
-        case 1:
-            productViewController.nameProductLabel.text = Constants.brownCaseInfoText
-            productViewController.productImageView.image = UIImage(named: Constants.brownCaseImageName)
-        case 2:
-            productViewController.nameProductLabel.text = Constants.watchInfoText
-            productViewController.productImageView.image = UIImage(named: Constants.watchImageName)
-        default:
-            break
+    private func createProductScrollView(x xCoordinate: CGFloat, y yCoordinate: CGFloat) -> UIScrollView {
+        let scrollView = UIScrollView(frame: CGRect(x: xCoordinate,
+                                                    y: yCoordinate,
+                                                    width: view.bounds.width,
+                                                    height: 180))
+        scrollView.delegate = self
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.isPagingEnabled = false
+        
+        var  productViewRect = CGRect(x: 0, y: 0, width: 140, height: scrollView.frame.height)
+        
+        for (index, product) in products.enumerated() {
+            let productView =  createproductView(for: product, tag: index, frame: productViewRect)
+            productViewRect.origin.x += productViewRect.width + 15
+            scrollView.addSubview(productView)
         }
+        
+        scrollView.contentSize = CGSize(width: scrollView.bounds.width * 1.5, height: 180)
+        return scrollView
+    }
+    
+    private func createproductView(for product: Product, tag: Int, frame: CGRect) -> UIView {
+        let view = UIView(frame: frame)
+        let nameProductLabel = UILabel(frame: CGRect(x: 10, y: 115, width: 120, height: 60))
+        let productImageView = UIImageView(frame: CGRect(x: 25, y: 20, width: 90, height: 90))
+        let imageName = product.imagesName.first ?? ""
+        view.tag = tag
+        view.layer.cornerRadius = 20
+        view.backgroundColor = UIColor(named: Colors.element)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
+        
+        nameProductLabel.textColor = .label
+        nameProductLabel.numberOfLines = 3
+        nameProductLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        nameProductLabel.text = product.name
+        
+        productImageView.image = UIImage(named: imageName)
+        productImageView.contentMode = .scaleAspectFit
+        
+        view.addSubview(productImageView)
+        view.addSubview(nameProductLabel)
+        return view
+    }
+    
+    @objc private func tapAction(sender: UITapGestureRecognizer) {
+        guard let selectView = sender.view,
+              selectView.tag < products.count else { return }
+        
+        let productViewController = ProductViewController()
+        productViewController.product = products[selectView.tag]
         navigationController?.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(productViewController, animated: true)
     }
 }
+
+/// UIScrollViewDelegate
+extension SearchViewController: UIScrollViewDelegate {}

@@ -9,11 +9,18 @@ import UIKit
 
 /// Main Tab Bar
 final class MainTabBarController: UITabBarController {
+    enum Titles {
+        static let buy = "Купить"
+        static let forYou = "Для вас"
+        static let search = "Поиск"
+        static let basket = "Корзина"
+
+    }
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.backgroundColor = UIColor(named: "TabBarColor")
+        tabBar.backgroundColor = UIColor(named: Colors.element)
         setupViewControllers()
     }
     
@@ -22,17 +29,17 @@ final class MainTabBarController: UITabBarController {
         
         viewControllers = [
             createNavigationController(for: BuyViewController(),
-                                       title: "Купить",
-                                       image: UIImage(systemName: "laptopcomputer.and.iphone")),
+                                       title: Titles.buy,
+                                       image: UIImage(systemName: SystemImageNames.laptop)),
             createNavigationController(for: ForYouViewController(),
-                                       title: "Для вас",
-                                       image: UIImage(systemName: "person.crop.circle")),
+                                       title: Titles.forYou,
+                                       image: UIImage(systemName: SystemImageNames.person)),
             createNavigationController(for: SearchViewController(),
-                                       title: "Поиск",
-                                       image: UIImage(systemName: "magnifyingglass")),
+                                       title: Titles.search,
+                                       image: UIImage(systemName: SystemImageNames.magnifyingGlass)),
             createNavigationController(for: BasketViewController(),
-                                       title: "Корзина",
-                                       image: UIImage(systemName: "bag"))
+                                       title: Titles.basket,
+                                       image: UIImage(systemName: SystemImageNames.bag))
         ]
     }
     
