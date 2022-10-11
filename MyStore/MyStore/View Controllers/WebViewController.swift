@@ -57,6 +57,8 @@ final class WebViewController: UIViewController {
     
     private lazy var progressButtonItem = UIBarButtonItem(customView: progressView)
     
+    private var observation: NSKeyValueObservation?
+
     // MARK: - Public Property
     var request: URLRequest!
     
@@ -74,6 +76,10 @@ extension WebViewController {
     private func setupUI() {
         progressView.sizeToFit()
         progressView.progress = Float(webView.estimatedProgress)
+        
+        observation = webView.observe(\.estimatedProgress, options: [.new]) { _, _ in
+            self.progressView.progress = Float(self.webView.estimatedProgress)
+        }
         view.addSubview(webView)
         view.addSubview(webToolBar)
     }
@@ -114,7 +120,7 @@ extension WebViewController: WKNavigationDelegate {
         }
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         backButtonItem.isEnabled = webView.canGoBack
         forwardButtonItem.isEnabled = webView.canGoForward
     }
