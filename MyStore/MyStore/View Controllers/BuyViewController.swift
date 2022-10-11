@@ -17,9 +17,11 @@ final class BuyViewController: UIViewController {
     }
 }
 
-/// extension
+/// extension добавляет методы
 extension BuyViewController {
-    func setupUI() {
+    
+    // MARK: - Private Methods
+   private func setupUI() {
         view.backgroundColor = .systemBackground
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 /// Карточка продукта
 final class ProductViewController: UIViewController {
@@ -16,13 +17,13 @@ final class ProductViewController: UIViewController {
         label.textColor = .label
         label.text = product?.name
         label.textAlignment = .center
-        label.numberOfLines = 1
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
     private lazy var priceProductLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 135, width: view.frame.width, height: 20))
+        let label = UILabel(frame: CGRect(x: 0, y: 145, width: view.frame.width, height: 20))
         label.center.x = view.center.x
         label.textColor = .systemGray2
         label.text = product?.price
@@ -33,12 +34,12 @@ final class ProductViewController: UIViewController {
     }()
     
     private lazy var infoProductLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 465, width: view.frame.width, height: 20))
+        let label = UILabel(frame: CGRect(x: 0, y: 455, width: view.frame.width, height: 40))
         label.center.x = view.center.x
         label.textColor = .systemGray2
         label.text = product?.name
         label.textAlignment = .center
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 13, weight: .regular)
         return label
     }()
@@ -115,7 +116,6 @@ final class ProductViewController: UIViewController {
         let label = UILabel(frame: CGRect(x: 30, y: 740, width: view.frame.width - 70, height: 60))
         label.center.x = view.center.x
         label.textColor = .systemGray2
-        
         label.font = .systemFont(ofSize: 12, weight: .regular)
         let attributedString = NSMutableAttributedString(string: LabelTexts.delivery)
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor,
@@ -132,6 +132,8 @@ final class ProductViewController: UIViewController {
         label.attributedText = attributedString
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loadPDFAction)))
         return label
     }()
     
@@ -148,6 +150,7 @@ final class ProductViewController: UIViewController {
                                                       style: .plain,
                                                       target: self,
                                                       action: nil)
+    
     private lazy var heartBarButton = UIBarButtonItem(image: UIImage(systemName: SystemImageNames.heart),
                                                       style: .plain,
                                                       target: self,
@@ -180,7 +183,6 @@ extension ProductViewController {
         view.addSubview(addBasketButton)
         view.addSubview(boxImageView)
         navigationItem.setRightBarButtonItems([heartBarButton, shareBarButton], animated: true)
-        
     }
     
     private func createProductView(imageNames: [String]) -> UIScrollView {
@@ -190,14 +192,16 @@ extension ProductViewController {
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = true
         var imageViewRect = CGRect(x: 0, y: 20, width: view.frame.width, height: scrollViewRect.height - 80 )
-        for imageName in imageNames {
+        for (index, imageName) in imageNames.enumerated() {
             let imageView = newImageView(imageName: imageName, paramFrame: imageViewRect)
             imageViewRect.origin.x += imageViewRect.width
+            if index == 0 {
+                imageView.isUserInteractionEnabled = true
+                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loadURLAction)))
+            }
             scrollView.addSubview(imageView)
         }
-        
-        scrollView.contentSize = CGSize(width: scrollViewRect.width * CGFloat(imageNames.count),
-                                        height: 240 )
+        scrollView.contentSize = CGSize(width: scrollViewRect.width * CGFloat(imageNames.count), height: 240 )
         return scrollView
     }
     
@@ -208,6 +212,7 @@ extension ProductViewController {
         return imageView
     }
     
+    // MARK: - Actions
     @objc private func changeSelectedButtonAction(sender: UIButton) {
         if whiteButton === sender {
             gradientButton.isSelected.toggle()
@@ -218,6 +223,22 @@ extension ProductViewController {
             whiteButton.layer.borderColor = UIColor.clear.cgColor
             gradientButton.layer.borderColor = UIColor.tintColor.cgColor
         }
+    }
+    
+    @objc func loadURLAction(sender: UITapGestureRecognizer) {
+        guard let productURL = product?.url else { return }
+        let request = URLRequest(url: productURL)
+        let webViewController = WebViewController()
+        webViewController.request = request
+        present(webViewController, animated: true)
+    }
+    
+    @objc func loadPDFAction(sender: UITapGestureRecognizer) {
+        guard let url = Bundle.main.url(forResource: "file", withExtension: "pdf") else { return }
+        let request = URLRequest(url: url)
+        let pdfViewController = PDFViewController()
+        pdfViewController.request = request
+        navigationController?.pushViewController(pdfViewController, animated: true)        
     }
 }
 

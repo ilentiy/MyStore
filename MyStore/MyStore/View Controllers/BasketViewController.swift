@@ -17,7 +17,7 @@ final class BasketViewController: UIViewController {
     }
 }
 
-/// extension
+/// extension добавляет методы
 extension BasketViewController {
     
     // MARK: - Private Methods
