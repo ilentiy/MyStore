@@ -30,7 +30,7 @@ final class ForYouViewController: UIViewController {
     // MARK: - Visual Components
     private lazy var pageScrollView = createScrollView()
     
-    private let avatarImageView = UIImageView(image: UIImage(systemName: "person.circle.fill"))
+    private let avatarImageView = UIImageView(image: UIImage(systemName: ""))
     
     // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
