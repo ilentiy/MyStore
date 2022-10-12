@@ -22,6 +22,8 @@ enum SystemImageNames {
     static let laptop = "laptopcomputer.and.iphone"
     static let person = "person.crop.circle"
     static let bag = "bag"
+    static let preson = "person.circle.fill"
+    static let badge = "app.badge"
 }
 
 /// Текст кнопок
@@ -73,6 +75,7 @@ enum ProductsURL {
     static let blackCase = "https://re-store.ru/catalog/P058-110-15/"
     static let brownCase = "https://re-store.ru/catalog/PA15DACH5449/"
     static let watchStrap = "https://re-store.ru/catalog/MJ4V3ZM-A/"
+    static let restore = "re-store.ru"
 }
 
 ///  Системные названия кнопок для тул бара
@@ -95,4 +98,16 @@ enum OrderViewText {
         static let status = "Ваш заказ отправлен."
         static let detail = "1 товар, доставка завтра"
     }
+    
+}
+
+/// КОнстанты для работы с вебкит
+enum FilesURLs {
+    static let fileName = "file"
+    static let fileExtension = "pdf"
+}
+
+/// Ключи
+enum Keys {
+    static let avatar = "avatar"
 }

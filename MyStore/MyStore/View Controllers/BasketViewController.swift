@@ -11,13 +11,14 @@ import UIKit
 final class BasketViewController: UIViewController {
     
     // MARK: - Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        setupUserInterfaceStyle()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUserInterfaceStyle()
     }
 }
 

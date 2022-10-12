@@ -160,13 +160,14 @@ final class ProductViewController: UIViewController {
     var product: Product?
     
     // MARK: - Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        setupUserInterfaceStyle()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUserInterfaceStyle()
     }
 }
 
@@ -243,7 +244,8 @@ extension ProductViewController {
     }
     
     @objc func loadPDFAction(sender: UITapGestureRecognizer) {
-        guard let url = Bundle.main.url(forResource: "file", withExtension: "pdf") else { return }
+        guard let url = Bundle.main.url(forResource: FilesURLs.fileName,
+                                        withExtension: FilesURLs.fileExtension) else { return }
         let request = URLRequest(url: url)
         let pdfViewController = PDFViewController()
         pdfViewController.request = request

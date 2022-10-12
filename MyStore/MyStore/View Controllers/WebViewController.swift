@@ -17,6 +17,7 @@ final class WebViewController: UIViewController {
         let webView = WKWebView(frame: view.frame)
         webView.uiDelegate = self
         webView.navigationDelegate = self
+        guard let request = request else { return  webView }
         webView.load(request)
         return webView
     }()
@@ -58,9 +59,9 @@ final class WebViewController: UIViewController {
     private lazy var spacer = UIBarButtonItem(systemItem: .flexibleSpace)
     
     private var observation: NSKeyValueObservation?
-
+    
     // MARK: - Public Property
-    var request: URLRequest!
+    var request: URLRequest?
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -77,7 +78,8 @@ extension WebViewController {
         progressView.sizeToFit()
         progressView.progress = Float(webView.estimatedProgress)
         
-        observation = webView.observe(\.estimatedProgress, options: [.new]) { _, _ in
+        observation = webView.observe(\.estimatedProgress, options: [.new]) { [weak self] _, _ in
+            guard let self = self else { return }
             self.progressView.progress = Float(self.webView.estimatedProgress)
         }
         view.addSubview(webView)
@@ -100,7 +102,8 @@ extension WebViewController {
     }
     
     @objc private func shareURLAction() {
-        activityViewController = UIActivityViewController(activityItems: [request.url?.absoluteString ?? ""],
+        guard let absoluteString = request?.url?.absoluteString else { return }
+        activityViewController = UIActivityViewController(activityItems: [absoluteString],
                                                           applicationActivities: nil)
         guard let activityViewController = activityViewController else { return }
         present(activityViewController, animated: true)
@@ -113,7 +116,7 @@ extension WebViewController: WKNavigationDelegate {
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
         guard let url = navigationAction.request.url?.absoluteString else { return }
-        if url.contains("re-store.ru") {
+        if url.contains(ProductsURL.restore) {
             decisionHandler(.allow )
         } else {
             decisionHandler(.cancel )
@@ -127,6 +130,4 @@ extension WebViewController: WKNavigationDelegate {
 }
 
 /// WKUIDelegate
-extension WebViewController: WKUIDelegate {
-    
-}
+extension WebViewController: WKUIDelegate {}

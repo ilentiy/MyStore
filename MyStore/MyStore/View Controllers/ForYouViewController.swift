@@ -30,17 +30,17 @@ final class ForYouViewController: UIViewController {
     // MARK: - Visual Components
     private lazy var pageScrollView = createScrollView()
     
-    private let avatarImageView = UIImageView(image: UIImage(systemName: "person.circle.fill"))
+    private let avatarImageView = UIImageView(image: UIImage(systemName: SystemImageNames.person))
     
     // MARK: - Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        setupUserInterfaceStyle()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAvatar()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupUserInterfaceStyle()
     }
 }
 
@@ -111,7 +111,7 @@ extension ForYouViewController {
                 
         let recomendImageView: UIImageView = {
             let imageView = UIImageView(frame: CGRect(x: 30, y: 420, width: 40, height: 40))
-            imageView.image = UIImage(systemName: "app.badge")
+            imageView.image = UIImage(systemName: SystemImageNames.badge )
             imageView.tintColor = .systemPink
             return imageView
         }()
@@ -295,7 +295,7 @@ extension ForYouViewController {
             return min(1.0, sizeAddendumFactor + factor)
         }()
         
-        let sizeDiff = Constraints.ImageSizeForLargeState * (1.0 - factor) // 8.0
+        let sizeDiff = Constraints.ImageSizeForLargeState * (1.0 - factor)
         
         let yTranslation: CGFloat = {
             let maxYTranslation = Constraints.ImageBottomMarginForLargeState -
@@ -314,22 +314,21 @@ extension ForYouViewController {
     
     private func saveUserDefaults(image: Data) {
         let defaults = UserDefaults.standard
-        guard defaults.object(forKey: "avatar") != nil else {
-            defaults.setValue(image, forKey: "avatar")
+        guard defaults.object(forKey: Keys.avatar) != nil else {
+            defaults.setValue(image, forKey: Keys.avatar)
             return
         }
-        defaults.removeObject(forKey: "avatar")
-        defaults.setValue(image, forKey: "avatar")
+        defaults.removeObject(forKey: Keys.avatar)
+        defaults.setValue(image, forKey: Keys.avatar)
     }
     
     private func checkUserDefaults() -> UIImage? {
         let userDefaults = UserDefaults.standard
-        guard let dataImage = userDefaults.object(forKey: "avatar") as? Data else {
-            let image = UIImage(systemName: "person.circle.fill")?.resizeImage(to: CGSize(width: 40, height: 40))
-            return image
-        }
-        guard let image = UIImage(data: dataImage) else {
-            let image = UIImage(systemName: "person.circle.fill")?.resizeImage(to: CGSize(width: 40, height: 40))
+        guard
+            let dataImage = userDefaults.object(forKey: Keys.avatar) as? Data,
+            let image = UIImage(data: dataImage)
+        else {
+            let image = UIImage(systemName: SystemImageNames.person)?.resizeImage(to: CGSize(width: 40, height: 40))
             return image
         }
         return image
@@ -356,7 +355,7 @@ extension ForYouViewController: UIImagePickerControllerDelegate {
             avatarImageView.image = uiImage
             guard let imageData = image.pngData() else { return }
             saveUserDefaults(image: imageData)
-            self.dismiss(animated: true)
+            dismiss(animated: true)
         }
 }
 

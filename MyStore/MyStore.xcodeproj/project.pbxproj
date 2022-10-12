@@ -62,14 +62,14 @@
 		0959796A28EF7691005DD195 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0959796628EF5EF2005DD195 /* MainTabBarController.swift */,
-				0959796B28EF7758005DD195 /* ProductViewController.swift */,
 				0959796428EF5A35005DD195 /* BasketViewController.swift */,
 				0959796028EF5A00005DD195 /* BuyViewController.swift */,
 				0959796228EF5A1E005DD195 /* ForYouViewController.swift */,
+				0959796628EF5EF2005DD195 /* MainTabBarController.swift */,
+				090296DC28F5829B00274F29 /* PDFViewController.swift */,
+				0959796B28EF7758005DD195 /* ProductViewController.swift */,
 				09C9196928EF1E5B0099B2DC /* SearchViewController.swift */,
 				090296D828F4BEC400274F29 /* WebViewController.swift */,
-				090296DC28F5829B00274F29 /* PDFViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -102,16 +102,16 @@
 			isa = PBXGroup;
 			children = (
 				09C9196528EF1E5B0099B2DC /* AppDelegate.swift */,
-				09C9196728EF1E5B0099B2DC /* SceneDelegate.swift */,
-				09628F2B28F3238300F43257 /* Constants.swift */,
-				0959796A28EF7691005DD195 /* View Controllers */,
-				09628F2D28F32C8A00F43257 /* Model */,
-				09C9196B28EF1E5B0099B2DC /* Main.storyboard */,
 				09C9196E28EF1E5D0099B2DC /* Assets.xcassets */,
 				0959796828EF664F005DD195 /* Colors.xcassets */,
+				09628F2B28F3238300F43257 /* Constants.swift */,
 				090296DA28F5824C00274F29 /* file.pdf */,
-				09C9197028EF1E5D0099B2DC /* LaunchScreen.storyboard */,
 				09C9197328EF1E5D0099B2DC /* Info.plist */,
+				09C9197028EF1E5D0099B2DC /* LaunchScreen.storyboard */,
+				09C9196B28EF1E5B0099B2DC /* Main.storyboard */,
+				09628F2D28F32C8A00F43257 /* Model */,
+				09C9196728EF1E5B0099B2DC /* SceneDelegate.swift */,
+				0959796A28EF7691005DD195 /* View Controllers */,
 			);
 			path = MyStore;
 			sourceTree = "<group>";

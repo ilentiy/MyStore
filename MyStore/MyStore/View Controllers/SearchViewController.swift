@@ -172,12 +172,22 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUserInterfaceStyle()
+    }
 }
 
 /// extension добавляет методы 
 extension SearchViewController {
     
     // MARK: - Private Methods
+    private func setupUserInterfaceStyle() {
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        tabBarController?.tabBar.overrideUserInterfaceStyle = .dark
+    }
+
     private func setupUI() {
         view.backgroundColor = .systemBackground
         tabBarController?.overrideUserInterfaceStyle = .dark
