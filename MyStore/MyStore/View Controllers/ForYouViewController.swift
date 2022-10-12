@@ -33,6 +33,10 @@ final class ForYouViewController: UIViewController {
     private let avatarImageView = UIImageView(image: UIImage(systemName: "person.circle.fill"))
     
     // MARK: - Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        setupUserInterfaceStyle()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAvatar()
@@ -44,6 +48,12 @@ final class ForYouViewController: UIViewController {
 extension ForYouViewController {
     
     // MARK: - Private Methods
+    
+    private func setupUserInterfaceStyle() {
+        tabBarController?.overrideUserInterfaceStyle = .light
+        tabBarController?.tabBar.overrideUserInterfaceStyle = .light
+    }
+    
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(pageScrollView)

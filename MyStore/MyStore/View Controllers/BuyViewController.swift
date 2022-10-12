@@ -11,6 +11,10 @@ import UIKit
 final class BuyViewController: UIViewController {
     
     // MARK: - Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        setupUserInterfaceStyle()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -21,6 +25,11 @@ final class BuyViewController: UIViewController {
 extension BuyViewController {
     
     // MARK: - Private Methods
+    private func setupUserInterfaceStyle() {
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        tabBarController?.tabBar.overrideUserInterfaceStyle = .dark
+    }
+    
    private func setupUI() {
         view.backgroundColor = .systemBackground
     }

@@ -180,6 +180,8 @@ extension SearchViewController {
     // MARK: - Private Methods
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        tabBarController?.tabBar.overrideUserInterfaceStyle = .dark
         view.addSubview(recentlyLabel)
         view.addSubview(clearButton)
         view.addSubview(requestsLabel)

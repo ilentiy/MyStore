@@ -160,6 +160,10 @@ final class ProductViewController: UIViewController {
     var product: Product?
     
     // MARK: - Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        setupUserInterfaceStyle()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -170,6 +174,11 @@ final class ProductViewController: UIViewController {
 extension ProductViewController {
     
     // MARK: - Private Methods
+    private func setupUserInterfaceStyle() {
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        tabBarController?.tabBar.overrideUserInterfaceStyle = .dark
+    }
+
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(nameProductLabel)
