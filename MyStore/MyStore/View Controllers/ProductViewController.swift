@@ -86,7 +86,7 @@ final class ProductViewController: UIViewController {
         button.center.x = view.center.x
         button.backgroundColor = .tintColor
         button.layer.cornerRadius = 10
-        button.setTitle(TitleButtons.addBasket, for: .normal)
+        button.setTitle(ButtonsTitle.addBasket, for: .normal)
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
         return button

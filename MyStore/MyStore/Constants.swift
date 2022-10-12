@@ -25,13 +25,19 @@ enum SystemImageNames {
 }
 
 /// Текст кнопок
-enum TitleButtons {
+enum ButtonsTitle {
     static let clear = "Очистить"
     static let addBasket = "Добавить в корзину"
+    static let showAll = "Показать всё"
 }
 
 /// Текст лэйблов
 enum LabelTexts {
+    static let whatsNew = "Вот что нового"
+    static let recomend = "Рекомендуется Вам"
+    static let devices = "Ваши устройства"
+    static let getNews = "Получайте новости о своем заказе в режиме реального времени."
+    static let orderNews = "Включите уведомления, чтобы получать новости о своем заказе."
     static let compatible = "Совместимо с MacBook Pro - Евгений"
     static let delivery = """
     Заказ сегодня в течении дня, доставка:
@@ -39,6 +45,7 @@ enum LabelTexts {
     Варианты доставки для местоположения: 115533
 """
 }
+
 /// Информация о продуктах
 enum InfoProducts {
     static let blackCase = "Чехол-конверт Pipetto для MacBook Pro 16, черный"
@@ -58,6 +65,7 @@ enum ProductsImagesName {
     static let blackCase = ["caseBlack1", "caseBlack2", "caseBlack3"]
     static let brownCase = ["caseBrown1", "caseBrown2", "caseBrown3"]
     static let watchStrap = ["watchStrap1", "watchStrap2"]
+    static let airpods = "airpods"
 }
 
 /// Ссылки на рестор
@@ -73,4 +81,18 @@ enum BarButtonImageName {
     static let forward = "chevron.forward"
     static let reload = "arrow.clockwise"
     static let share = "square.and.arrow.up"
+}
+
+/// Прогресс заказа
+enum OrderViewText {
+    enum Progress {
+        static let firstStage = "Обрабатывается"
+        static let secondStage = "Отправлено"
+        static let thirdStage = "Доставлено"
+    }
+    
+    enum Info {
+        static let status = "Ваш заказ отправлен."
+        static let detail = "1 товар, доставка завтра"
+    }
 }

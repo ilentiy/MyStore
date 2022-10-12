@@ -26,12 +26,14 @@ final class WebViewController: UIViewController {
                                               width: view.frame.width, height: 40))
         backButtonItem.isEnabled = true
         forwardButtonItem.isEnabled = true
-        toolBar.items = [backButtonItem, forwardButtonItem, spacer,
-                         progressButtonItem, spacer, refreshButtonItem, shareButtonItem]
+        toolBar.items = [backButtonItem, spacer, forwardButtonItem, spacer,
+                         progressButtonItem, spacer, refreshButtonItem, spacer, shareButtonItem]
         return toolBar
     }()
     
-    private lazy var progressView = UIProgressView(progressViewStyle: .default)
+    private lazy var progressView = UIProgressView(progressViewStyle: .bar)
+    
+    private lazy var progressButtonItem = UIBarButtonItem(customView: progressView)
     
     private lazy var backButtonItem = UIBarButtonItem(image: UIImage(systemName: BarButtonImageName.back),
                                                       style: .plain,
@@ -54,8 +56,6 @@ final class WebViewController: UIViewController {
                                                        action: #selector(shareURLAction))
     
     private lazy var spacer = UIBarButtonItem(systemItem: .flexibleSpace)
-    
-    private lazy var progressButtonItem = UIBarButtonItem(customView: progressView)
     
     private var observation: NSKeyValueObservation?
 

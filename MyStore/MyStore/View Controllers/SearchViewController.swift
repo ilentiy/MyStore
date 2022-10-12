@@ -39,7 +39,7 @@ final class SearchViewController: UIViewController {
     
     private lazy var clearButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 290, y: 200, width: 100, height: 50))
-        button.setTitle(TitleButtons.clear, for: .normal)
+        button.setTitle(ButtonsTitle.clear, for: .normal)
         button.setTitleColor(.tintColor, for: .normal)
         button.backgroundColor = .clear
         return button

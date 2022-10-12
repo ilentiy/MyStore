@@ -16,6 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         let tabBarController = MainTabBarController()
+        tabBarController.selectedViewController = tabBarController.viewControllers?[1]
+        tabBarController.viewControllers?[1].overrideUserInterfaceStyle = .light
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
