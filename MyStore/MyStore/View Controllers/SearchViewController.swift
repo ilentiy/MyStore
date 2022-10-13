@@ -20,27 +20,7 @@ final class SearchViewController: UIViewController {
         static let requestThreeText = "Beats"
         static let requestFourText = "Сравните модели iPhone"
     }
-    /// Информация о продуктах
-    enum InfoProducts {
-        static let blackCase = "Чехол Incase Flat для MacBook Pro 16 дюймов"
-        static let brownCase = "Кожанный чехол Incase Flat для MacBook Pro 16 дюймов, золотой"
-        static let watchStrap = "Спортивный ремешок Black Unity"
-    }
-    
-    /// Цена продуктов
-    enum ProductPrice {
-        static let blackCase = "3 900.00 руб."
-        static let brownCase = "5 600.00 руб."
-        static let watchStrap = "4 000.00 руб."
-    }
-    
-    /// Имена изображений продуктов
-    enum ProductsImagesName {
-        static let blackCase = ["caseBlack1", "caseBlack2", "caseBlack3"]
-        static let brownCase = ["caseBrown1", "caseBrown2", "caseBrown3"]
-        static let watchStrap = ["watchStrap1", "watchStrap2"]
-    }
-    
+   
     // MARK: - Visual Components
     private lazy var searchBar: UISearchController = {
         let searchBar = UISearchController()
@@ -59,7 +39,7 @@ final class SearchViewController: UIViewController {
     
     private lazy var clearButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 290, y: 200, width: 100, height: 50))
-        button.setTitle(TitleButtons.clear, for: .normal)
+        button.setTitle(ButtonsTitle.clear, for: .normal)
         button.setTitleColor(.tintColor, for: .normal)
         button.backgroundColor = .clear
         return button
@@ -175,14 +155,16 @@ final class SearchViewController: UIViewController {
     
     private let products = [Product(name: InfoProducts.blackCase,
                                     price: ProductPrice.blackCase,
-                                    imagesName: ProductsImagesName.blackCase),
+                                    imagesName: ProductsImagesName.blackCase,
+                                    url: URL(string: ProductsURL.blackCase)),
                             Product(name: InfoProducts.watchStrap,
                                     price: ProductPrice.watchStrap,
-                                    imagesName: ProductsImagesName.watchStrap),
+                                    imagesName: ProductsImagesName.watchStrap,
+                                    url: URL(string: ProductsURL.watchStrap)),
                             Product(name: InfoProducts.brownCase,
                                     price: ProductPrice.brownCase,
-                                    imagesName: ProductsImagesName.brownCase)
-    
+                                    imagesName: ProductsImagesName.brownCase,
+                                    url: URL(string: ProductsURL.brownCase))
     ]
     
     // MARK: - Life Cycle
@@ -190,14 +172,26 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUserInterfaceStyle()
+    }
 }
 
 /// extension добавляет методы 
 extension SearchViewController {
     
     // MARK: - Private Methods
+    private func setupUserInterfaceStyle() {
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        tabBarController?.tabBar.overrideUserInterfaceStyle = .dark
+    }
+
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        tabBarController?.tabBar.overrideUserInterfaceStyle = .dark
         view.addSubview(recentlyLabel)
         view.addSubview(clearButton)
         view.addSubview(requestsLabel)
@@ -262,10 +256,10 @@ extension SearchViewController {
         return view
     }
     
+    // MARK: - Actions
     @objc private func tapAction(sender: UITapGestureRecognizer) {
         guard let selectView = sender.view,
               selectView.tag < products.count else { return }
-        
         let productViewController = ProductViewController()
         productViewController.product = products[selectView.tag]
         navigationController?.modalPresentationStyle = .fullScreen

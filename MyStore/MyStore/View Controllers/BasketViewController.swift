@@ -15,12 +15,22 @@ final class BasketViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUserInterfaceStyle()
+    }
 }
 
-/// extension
+/// extension добавляет методы
 extension BasketViewController {
     
     // MARK: - Private Methods
+    private func setupUserInterfaceStyle() {
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        tabBarController?.tabBar.overrideUserInterfaceStyle = .dark
+    }
+    
     private func setupUI() {
         view.backgroundColor = .systemBackground
     }

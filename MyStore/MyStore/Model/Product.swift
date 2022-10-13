@@ -9,7 +9,8 @@ import Foundation
 
 /// Описание продукта
 struct Product {
-    var name: String
-    var price: String
-    var imagesName: [String]
+    let name: String
+    let price: String
+    let imagesName: [String]
+    let url: URL?
 }
