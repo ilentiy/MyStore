@@ -43,20 +43,9 @@ final class StartViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         view.backgroundColor = .white
-        
-        pageImageView.frame = CGRect(x: 0, y: 100, width: view.bounds.width, height: view.bounds.width)
-        pageImageView.center.x = view.center.x
-        
-        pageImageView.image = UIImage(named: imageName)
-        
-        titleLabel.text = title
-        titleLabel.frame = CGRect(x: 0, y: 575, width: view.bounds.width, height: 100)
-        titleLabel.center.x = view.center.x
-        titleLabel.alpha = 0
-        infoLabel.text = info
-        infoLabel.frame = CGRect(x: 0, y: 625, width: view.bounds.width - 75, height: 100)
-        infoLabel.center.x = view.center.x
-        infoLabel.alpha = 0
+        createImageView(imageName: imageName)
+        createInfoLabel(text: info)
+        createTitleLabel(text: title)
         
         for view in subViews {
             self.view.addSubview(view)
@@ -89,5 +78,25 @@ final class StartViewController: UIViewController {
     private func endAnimate() {
         titleLabel.alpha = 0
         infoLabel.alpha = 0
+    }
+    
+    private func createInfoLabel(text: String) {
+        infoLabel.text = text
+        infoLabel.frame = CGRect(x: 0, y: 625, width: view.bounds.width - 75, height: 100)
+        infoLabel.center.x = view.center.x
+        infoLabel.alpha = 0
+    }
+    
+    private func createTitleLabel(text: String) {
+        titleLabel.text = text
+        titleLabel.frame = CGRect(x: 0, y: 575, width: view.bounds.width, height: 100)
+        titleLabel.center.x = view.center.x
+        titleLabel.alpha = 0
+    }
+    
+    private func createImageView(imageName: String) {
+        pageImageView.frame = CGRect(x: 0, y: 100, width: view.bounds.width, height: view.bounds.width)
+        pageImageView.center.x = view.center.x
+        pageImageView.image = UIImage(named: imageName)
     }
 }
