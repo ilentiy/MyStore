@@ -80,6 +80,7 @@ final class MainPageViewController: UIPageViewController {
             let currentPage = viewControllers?.first,
             let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage)
         else { return }
+        checklastView(index: currentIndex)
         setViewControllers([nextPage], direction: .forward, animated: true)
     }
     
