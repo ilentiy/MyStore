@@ -38,7 +38,6 @@ final class StartViewController: UIViewController {
     // MARK: - Public Property
     lazy var subViews: [UIView] = [pageImageView, titleLabel, infoLabel]
     
-    
     // MARK: - Init
     init(imageName: String, title: String, info: String) {
         super.init(nibName: nil, bundle: nil)
