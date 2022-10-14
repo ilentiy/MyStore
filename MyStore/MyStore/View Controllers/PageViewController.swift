@@ -7,9 +7,10 @@
 
 import UIKit
 
-/// SDSD
-class StartViewController: UIViewController {
+/// Страницы для отображения в PageViewController
+final class StartViewController: UIViewController {
     
+    // MARK: - Visual Components
     private let pageImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleToFill
@@ -34,13 +35,16 @@ class StartViewController: UIViewController {
         return label
     }()
     
+    // MARK: - Public Property
     lazy var subViews: [UIView] = [pageImageView, titleLabel, infoLabel]
     
+    
+    // MARK: - Init
     init(imageName: String, title: String, info: String) {
         super.init(nibName: nil, bundle: nil)
         
         view.backgroundColor = .white
-
+        
         pageImageView.frame = CGRect(x: 0, y: 100, width: view.bounds.width, height: view.bounds.width)
         pageImageView.center.x = view.center.x
         
@@ -54,7 +58,7 @@ class StartViewController: UIViewController {
         infoLabel.frame = CGRect(x: 0, y: 625, width: view.bounds.width - 75, height: 100)
         infoLabel.center.x = view.center.x
         infoLabel.alpha = 0
-
+        
         for view in subViews {
             self.view.addSubview(view)
         }
@@ -64,6 +68,7 @@ class StartViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startAnimate()
@@ -74,14 +79,15 @@ class StartViewController: UIViewController {
         endAnimate()
     }
     
-    func startAnimate() {
+    // MARK: - Private Methods
+    private func startAnimate() {
         UILabel.animate(withDuration: 1.5) {
             self.titleLabel.alpha = 1
             self.infoLabel.alpha = 1
         }
     }
     
-    func endAnimate() {
+    private func endAnimate() {
         titleLabel.alpha = 0
         infoLabel.alpha = 0
     }

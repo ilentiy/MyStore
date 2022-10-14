@@ -75,6 +75,7 @@ final class MainPageViewController: UIPageViewController {
         configurate()
     }
     
+    // MARK: - Actions
     @objc func nextButtonAction() {
         guard
             let currentPage = viewControllers?.first,
@@ -94,10 +95,10 @@ final class MainPageViewController: UIPageViewController {
     }
 }
 
-/// добавить марку на эхстеншен
+/// Добавляет методы
 extension MainPageViewController {
     
-    // MARK: - Methods
+    // MARK: - Private Methods
     private func setupUI() {
         view.backgroundColor = .white
         startButton.center.x = view.center.x
@@ -138,6 +139,7 @@ extension MainPageViewController {
     }
 }
 
+/// UIPageViewControllerDataSource
 extension MainPageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController,
@@ -171,6 +173,7 @@ extension MainPageViewController: UIPageViewControllerDataSource {
     }
 }
 
+/// UIPageViewControllerDelegate
 extension MainPageViewController: UIPageViewControllerDelegate {
     func pageViewController(
            _ pageViewController: UIPageViewController,
