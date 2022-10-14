@@ -110,4 +110,33 @@ enum FilesURLs {
 /// Ключи
 enum Keys {
     static let avatar = "avatar"
+    static let firstLaunch = "key"
+}
+
+/// Имяена кар
+enum Pages {
+    enum First {
+        static let imageName = "page1"
+        static let titleText = "Track Your Cycle"
+        static let infoText = "Manage irregular period and learn how to improve your period"
+    }
+    
+    enum Second {
+        static let imageName = "page2"
+        static let titleText = "Plan Your Pregnancy"
+        static let infoText = "Favorable days are impornant. Vestibulum rutrun quam vitac fringela tincidunt"
+    }
+    
+    enum Third {
+        static let imageName = "page3"
+        static let titleText = "Daily Health Insight"
+        static let infoText = "Personal health insight. Vestibulum rutrum quam vitac fringilla tincidunt."
+    }
+}
+
+// Тайтлы кнопок Пэйдж контрола
+enum PageButtonTitle {
+    static let next = "NEXT"
+    static let start = "GET STARTED"
+    static let skip = "SKIP"
 }

@@ -16,7 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         let tabBarController = MainTabBarController()
-        window?.rootViewController = tabBarController
+        let pageController = MainPageViewController(transitionStyle: .scroll,
+                                                    navigationOrientation: .horizontal,
+                                                    options: nil)
+        if UserDefaults.standard.bool(forKey: Keys.firstLaunch) {
+            window?.rootViewController = tabBarController
+        } else {
+            window?.rootViewController = pageController
+        }
         window?.makeKeyAndVisible()
     }
 }

@@ -14,7 +14,6 @@ final class MainTabBarController: UITabBarController {
         static let forYou = "Для вас"
         static let search = "Поиск"
         static let basket = "Корзина"
-
     }
     
     // MARK: - Life Cycle
